@@ -33,7 +33,11 @@ The next two parameters (1, 2) are tag values the function will use for its poin
 These two tags values must be distinct.
 Finally, the resulting communicator is output in newcomm.
 
+<<<<<<< e3c01e6d627a194c995b1b6c078b59e11afb5098
 For more detailed usage, see [src/rankstr_mpi.h](src/rankstr_mpi.h) and the [User API docs](https://ecp-veloc.github.io/component-user-docs/group__rankstr.html).
+=======
+For more detailed usage, see [src/rankstr_mpi.h](src/rankstr_mpi.h).
+>>>>>>> install rankstr_mpi.h
 
 ## Build
 

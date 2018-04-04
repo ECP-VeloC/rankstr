@@ -9,7 +9,8 @@
 
 ADD_EXECUTABLE(rankstr_test test_rankstr.c)
 TARGET_LINK_LIBRARIES(rankstr_test ${RANKSTR_EXTERNAL_LIBS} rankstr)
-ADD_TEST(NAME rankstr_test COMMAND ${MPIEXEC} ${MPIEXEC_NUMPROC_FLAG} 3 ./rankstr_test)
+RANKSTR_ADD_TEST(rankstr_test 256 "")
+#ADD_TEST(NAME rankstr_test COMMAND ${MPIEXEC} ${MPIEXEC_NUMPROC_FLAG} 3 ./rankstr_test)
 
 
 ####################
