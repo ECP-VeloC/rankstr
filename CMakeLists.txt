@@ -11,7 +11,7 @@ SET(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # Configuration Options
 SET(MPI ON)
-# OPTION(MPI "Enable MPI operations for kvtrees" ON)
+# OPTION(MPI "Enable MPI operations" ON)
 OPTION(RANKSTR_LINK_STATIC "Default to static linking? (Needed for Cray)" OFF)
 
 # Find Packages & Files
