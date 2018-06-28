@@ -1,6 +1,11 @@
 #ifndef RANKSTR_MPI_H
 #define RANKSTR_MPI_H
 
+/* enable C++ codes to include this header directly */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /* Given a communicator and a string, compute number of unique strings
  * across all procs in comm and compute an id for input string
  * such that the id value matches another process if and only if that
@@ -26,5 +31,10 @@ void rankstr_mpi_comm_split(
   int tag2,         /* IN  - another tag, distinct from tag1, for point-to-point on comm */
   MPI_Comm* newcomm /* OUT - output communicator */
 );
+
+/* enable C++ codes to include this header directly */
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
 
 #endif
