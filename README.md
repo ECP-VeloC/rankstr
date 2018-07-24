@@ -31,7 +31,7 @@ The next two parameters (1, 2) are tag values the function will use for its poin
 These two tags values must be distinct.
 Finally, the resulting communicator is output in newcomm.
 
-For more detailed usage, see (src/rankstr_mpi.h)[src/rankstr_mpi.h].
+For more detailed usage, see [src/rankstr_mpi.h](src/rankstr_mpi.h).
 
 ## Build
 
