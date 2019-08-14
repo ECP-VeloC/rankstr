@@ -1,5 +1,6 @@
 #include "mpi.h"
 #include "rankstr_mpi.h"
+#include <stdio.h>
 
 int alltrue(int valid, MPI_Comm comm)
 {
