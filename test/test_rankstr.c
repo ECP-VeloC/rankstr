@@ -11,7 +11,7 @@ int alltrue(int valid, MPI_Comm comm)
 
 int main(int argc, char* argv[])
 {
-  int rc = 1;
+  int rc = 0;
 
   MPI_Comm comm = MPI_COMM_WORLD;
 
@@ -69,5 +69,5 @@ int main(int argc, char* argv[])
 
   MPI_Finalize();
 
-  return 0;
+  return rc;
 }
