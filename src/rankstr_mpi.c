@@ -590,7 +590,8 @@ void rankstr_mpi(const char* str, MPI_Comm comm, int tag1, int tag2, int* groups
    * so use the empty string for NULL strings */
   const char emptystr[] = "";
   if (str == NULL) {
-    str = emptystr;
+    fprintf(stderr, "Cannot pass NULL string to rankstr_mpi @ %s:%d\n", __FILE__, __LINE__);
+    MPI_Abort(comm, -1);
   }
 
   /* get maximum str length */
