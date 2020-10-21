@@ -664,7 +664,6 @@ void rankstr_mpi(const char* str, MPI_Comm comm, int tag1, int tag2, int* groups
 
 void rankstr_mpi_comm_split(MPI_Comm comm, const char* str, int key, int tag1, int tag2, MPI_Comm* newcomm)
 {
-
   const char* inputstr = str;
 
   /* rankstr requires a valid string,
