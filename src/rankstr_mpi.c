@@ -586,9 +586,10 @@ void rankstr_mpi(const char* str, MPI_Comm comm, int tag1, int tag2, int* groups
   //int tag1 = 0;
   //int tag2 = 1;
 
-  /* require str not be NULL */
+  /* rankstr requires a valid string */
   if (str == NULL) {
-    /* TODO: error */
+    fprintf(stderr, "Cannot pass NULL string to rankstr_mpi @ %s:%d\n", __FILE__, __LINE__);
+    MPI_Abort(comm, -1);
   }
 
   /* get maximum str length */
