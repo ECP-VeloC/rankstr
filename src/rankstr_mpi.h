@@ -21,6 +21,8 @@
 extern "C" {
 #endif
 
+#define RANKSTR_VERSION "0.0.3"
+
 /** Given a communicator and a string, compute number of unique strings
  * across all procs in comm and compute an id for input string
  * such that the id value matches another process if and only if that
