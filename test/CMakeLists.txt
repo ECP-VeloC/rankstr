@@ -7,8 +7,14 @@
 # Add tests to ctest
 ################
 
+IF(RANKSTR_LINK_STATIC)
+   SET(rankstr_lib rankstr-static)
+ELSE()
+   SET(rankstr_lib rankstr)
+ENDIF()
+
 ADD_EXECUTABLE(rankstr_test test_rankstr.c)
-TARGET_LINK_LIBRARIES(rankstr_test ${RANKSTR_EXTERNAL_LIBS} rankstr)
+TARGET_LINK_LIBRARIES(rankstr_test ${RANKSTR_EXTERNAL_LIBS} ${rankstr_lib})
 RANKSTR_ADD_TEST(rankstr_test 256 "")
 #ADD_TEST(NAME rankstr_test COMMAND ${MPIEXEC} ${MPIEXEC_NUMPROC_FLAG} 3 ./rankstr_test)
 
