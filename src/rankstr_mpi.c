@@ -612,7 +612,7 @@ void rankstr_mpi(const char* str, MPI_Comm comm, int tag1, int tag2, int* groups
    * This rank serves two purposes. First by sorting on string and then rank,
    * it ensures that every item is unique since the ranks are distinct.
    * Second, it is used as a return address to send the result back. */
-  strcpy((char*)buf, str);
+  strncpy((char*)buf, str, max_len);
   int* ptr = (int*) ((char*)buf + max_len);
   *ptr = rank;
 
