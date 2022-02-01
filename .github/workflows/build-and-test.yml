@@ -15,9 +15,10 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         target: [Debug, Release]
-        mpi: [seq, par]
+        #mpi: [seq, par]
+        # rankstr requires MPI
 
-    name: ${{ matrix.os }}-${{ matrix.target }}-${{ matrix.mpi }}
+    name: ${{ matrix.os }}-${{ matrix.target }}
 
     runs-on: ${{ matrix.os }}
 
@@ -33,13 +34,12 @@ jobs:
         uses: ecp-veloc/github-actions/get-scr-os-deps@main
         with:
           os: ${{ matrix.os }}
-          mpi: ${{ matrix.mpi }}
 
       - name: configure
         run: |
           mkdir build
           cd build
-          cmake ../rankstr -DCMAKE_BUILD_TYPE=${{ matrix.target }} -DMPI=${{ matrix.mpi == 'par' }}
+          cmake ../rankstr -DCMAKE_BUILD_TYPE=${{ matrix.target }}
 
       - name: build
         run: |
