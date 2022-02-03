@@ -15,8 +15,6 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest]
         target: [Debug, Release]
-        #mpi: [seq, par]
-        # rankstr requires MPI
 
     name: ${{ matrix.os }}-${{ matrix.target }}
 
@@ -35,18 +33,9 @@ jobs:
         with:
           os: ${{ matrix.os }}
 
-      - name: configure
-        run: |
-          mkdir build
-          cd build
-          cmake ../rankstr -DCMAKE_BUILD_TYPE=${{ matrix.target }}
-
-      - name: build
-        run: |
-          cd build
-          make
-
-      - name: check
-        run: |
-          cd build
-          make check
+      - name: build and test
+        uses: ecp-veloc/github-actions/cmake-build-test@main
+        with:
+          component: rankstr
+          target: ${{ matrix.target }}
+          cmake_line: "-DBUILD_SHARED_LIBS=ON -DRANKSTR_LINK_STATIC=ON"
