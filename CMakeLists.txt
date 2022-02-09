@@ -60,11 +60,7 @@ ENDIF(ENABLE_TESTS)
 
 # Generate config.h with all our build #defs
 CONFIGURE_FILE(${PROJECT_SOURCE_DIR}/cmake/config.h.in ${PROJECT_BINARY_DIR}/config.h)
-SET_SOURCE_FILES_PROPERTIES(config.h.in PROPERTIES GENERATED FALSE)
 SET_SOURCE_FILES_PROPERTIES(${PROJECT_BINARY_DIR}/config.h PROPERTIES GENERATED TRUE)
-
-# Special Install Files
-# INSTALL(FILES README.md DESTINATION ${CMAKE_INSTALL_DATADIR}/kvtree)
 
 # Package
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Splits processes into groups based on input string")
