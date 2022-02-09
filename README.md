@@ -1,6 +1,6 @@
 ## Overview
 
-[![Build Status](https://api.travis-ci.org/ECP-VeloC/rankstr.png?branch=main)](https://travis-ci.org/ECP-VeloC/rankstr)
+[![rankstr build and test](https://github.com/ECP-VeloC/rankstr/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/ECP-VeloC/rankstr/actions/workflows/build-and-test.yml)
 
 The rankstr (rank string) library provides functions that identify unique strings across an MPI communicator.
 
