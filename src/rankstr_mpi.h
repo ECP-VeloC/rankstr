@@ -21,7 +21,7 @@
 extern "C" {
 #endif
 
-#define RANKSTR_VERSION "0.1.0"
+#define RANKSTR_VERSION "0.2.0"
 
 /** Given a communicator and a string, compute number of unique strings
  * across all procs in comm and compute an id for input string
