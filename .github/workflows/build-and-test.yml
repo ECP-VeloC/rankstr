@@ -33,9 +33,14 @@ jobs:
         with:
           os: ${{ matrix.os }}
 
+      - name: build static
+        uses: ecp-veloc/github-actions/cmake-build-static@main
+        with:
+          component: rankstr
+          target: ${{ matrix.target }}
+
       - name: build and test
         uses: ecp-veloc/github-actions/cmake-build-test@main
         with:
           component: rankstr
           target: ${{ matrix.target }}
-          cmake_line: "-DBUILD_SHARED_LIBS=ON -DRANKSTR_LINK_STATIC=ON"
