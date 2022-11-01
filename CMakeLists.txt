@@ -1,5 +1,5 @@
-PROJECT(RANKSTR)
-CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.14)
+PROJECT(RANKSTR VERSION 0.2.0)
 
 # Mac rpath Policy
 IF(POLICY CMP0042)
@@ -34,22 +34,18 @@ LIST(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
 ## MPI
 INCLUDE(SetupMPI)
-IF(MPI_C_FOUND)
-    INCLUDE_DIRECTORIES(${MPI_C_INCLUDE_PATH})
-    LIST(APPEND RANKSTR_EXTERNAL_LIBS ${MPI_C_LIBRARIES})
-ELSE(MPI_C_FOUND)
+IF(NOT MPI_C_FOUND)
     MESSAGE(FATAL_ERROR
         "Could not find MPI! "
         "Either add an MPI compiler to your path "
         "or force CMake to build using the correct compiler (`export CC=mpicc`).")
-ENDIF(MPI_C_FOUND)
+ENDIF(NOT MPI_C_FOUND)
 
 ## HEADERS
 INCLUDE(CheckIncludeFile)
 INCLUDE(GNUInstallDirs)
 
 # Subdirectories
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/src)
 ADD_SUBDIRECTORY(src)
 
 IF(ENABLE_TESTS)
@@ -61,6 +57,22 @@ ENDIF(ENABLE_TESTS)
 # Generate config.h with all our build #defs
 CONFIGURE_FILE(${PROJECT_SOURCE_DIR}/cmake/config.h.in ${PROJECT_BINARY_DIR}/config.h)
 SET_SOURCE_FILES_PROPERTIES(${PROJECT_BINARY_DIR}/config.h PROPERTIES GENERATED TRUE)
+
+# CMake configs
+
+# Install the exports file
+INSTALL(EXPORT rankstrTargets FILE rankstrTargets.cmake NAMESPACE rankstr:: DESTINATION share/rankstr/cmake)
+
+# Export so we can use in-tree
+EXPORT(EXPORT rankstrTargets NAMESPACE rankstr:: FILE rankstrTargets.cmake)
+
+# Setup the package config
+INCLUDE(CMakePackageConfigHelpers)
+CONFIGURE_PACKAGE_CONFIG_FILE(cmake/rankstrConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/rankstrConfig.cmake INSTALL_DESTINATION share/rankstr/cmake)
+WRITE_BASIC_PACKAGE_VERSION_FILE(${CMAKE_CURRENT_BINARY_DIR}/rankstrConfigVersion.cmake COMPATIBILITY SameMajorVersion)
+
+# Install package config
+INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/rankstrConfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/rankstrConfigVersion.cmake DESTINATION share/rankstr/cmake)
 
 # Package
 SET(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Splits processes into groups based on input string")
