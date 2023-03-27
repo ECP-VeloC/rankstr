@@ -33,6 +33,7 @@ jobs:
         uses: ecp-veloc/github-actions/get-scr-os-deps@main
         with:
           os: ${{ matrix.os }}
+          mpi: seq
 
       - name: configure
         uses: ecp-veloc/github-actions/cmake-configure@main
